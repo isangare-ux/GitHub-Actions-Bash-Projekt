@@ -1,0 +1,28 @@
+name: Info Workflow
+on:
+    push:
+     branches:
+        - main
+    pull_request:
+        branches:
+        - main
+    workflow_dispatch:
+
+jobs:
+    info:
+        name: Show basic information
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: skript ausführbar machen
+              run: chmod +x scripts/*.sh
+            - name: Startinformation
+              run: |
+               soure scripts/common.sh
+               print_header "Information das funktion aufgerufen wurde und alles in Ordnung ist"
+               - name: Information werden angezeigt
+                run: bash scripts/01_show_info.sh  
+    

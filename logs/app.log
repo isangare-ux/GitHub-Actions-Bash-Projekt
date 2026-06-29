@@ -1,0 +1,9 @@
+2026-06-29 09:00:01 [INFO] Anwendung wurde gestartet
+2026-06-29 09:01:14 [INFO] Benutzer hat sich angemeldet
+2026-06-29 09:03:22 [WARN] Antwortzeit ist höher als erwartet
+2026-06-29 09:05:40 [INFO] Datei wurde verarbeitet
+2026-06-29 09:08:11 [ERROR] Verbindung zur Datenbank fehlgeschlagen
+2026-06-29 09:10:55 [WARN] Wiederholter Login Versuch erkannt
+2026-06-29 09:14:02 [INFO] Verarbeitung abgeschlossen
+2026-06-29 09:16:30 [ERROR] Report konnte nicht gespeichert werden
+2026-06-29 09:20:10 [WARN] Speicherverbrauch ist hoch
