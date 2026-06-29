@@ -39,3 +39,83 @@ jobs:
 
             - name: Logs werden analysiert
               run: bash scripts/03_analyze_logs.sh
+
+    log-tests:
+        name: 3 Tests ausführen
+        runs-on: ubuntu-latest
+        needs:
+            - project-validation
+            - analyze-logs
+        steps:
+            - name: Repository herunterladen
+              uses: actions/checkout@v4
+
+            - name: Skript ausführbar machen
+              run: chmod +x scripts/*.sh tests/*.sh
+
+            - name: Tests werden ausgeführt
+              run: bash scripts/04_run_tests.sh
+
+    build-report:
+        name: 4 Report bauen
+        runs-on: ubuntu-latest
+        needs:
+            - log-tests
+        steps:
+            - name: Repository herunterladen
+              uses: actions/checkout@v4
+
+            - name: Skripte ausführbar machen
+              run: chmod +x scripts/*.sh tests/*.sh
+
+            - name: Report erzeugen
+              run: bash scripts/05_build_report.sh
+
+            - name: Report als Artifact hochladen
+              uses: actions/upload-artifact@v4
+              with:
+                  name: log-report
+                  path: dist/report.md
+
+    package-project:
+        name: 4 Report bauen
+        runs-on: ubuntu-latest
+        needs:
+            - build-report
+
+        steps:
+            - name: Repository herunterladen
+              uses: actions/checkout@v4
+
+            - name: Skripte ausführbar machen
+              run: bash scripts/05_build_report.sh
+
+            - name: Report erzeugen
+              run: bash scripts/05_build_report.sh
+
+            - name: Report als Artifact hochladen
+              uses: actions/upload-artifact@v4
+              with:
+                  name: log-analyzer-package
+                  path: dist/report.md
+    package-project:
+        name: 5 Projekt paketieren
+        runs-on: ubuntu-latest
+        needs:
+            - build-report
+        steps:
+            - name: Repository herunterladen
+              uses: actions/checkout@v4
+
+            - name: Skripte ausführbar machen
+              run: chmod +x scripts/*.sh tests/*.sh
+
+            - name: Paket erstellen
+              run: bash scripts/06_package_project.sh
+
+            - name: Paket als Artifact hochladen
+              uses: actions/upload-artifact@v4
+              with:
+                name: log-analyzer-package
+                path: artifact/log-analyzer-package.tar.gz
+                
