@@ -1,0 +1,41 @@
+name: Bash CI
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - "scripts/**"
+    pull_request:
+        branches:
+            - main
+        paths:
+            - "scripts/**"
+    workflow_dispatch:
+
+jobs:
+    project-validation:
+        name: project-validation
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: skript ausführbar machen
+              run: chmod +x scripts/*.sh
+            - name: Validierung wird ausgeführt
+              run: bash scripts/02_validate_project.sh
+
+    analyze-logs:
+        name: analyze-logs
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Skript ausführbar machen
+              run: chmod +x scripts/*.sh
+
+            - name: Logs werden analysiert
+              run: bash scripts/03_analyze_logs.sh
