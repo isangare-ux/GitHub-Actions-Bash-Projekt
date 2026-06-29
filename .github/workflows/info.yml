@@ -1,11 +1,11 @@
 name: Info Workflow
 on:
     push:
-     branches:
-        - main
+        branches:
+            - main
     pull_request:
         branches:
-        - main
+            - main
     workflow_dispatch:
 
 jobs:
@@ -19,10 +19,11 @@ jobs:
 
             - name: skript ausführbar machen
               run: chmod +x scripts/*.sh
+
             - name: Startinformation
               run: |
-               soure scripts/common.sh
-               print_header "Information das funktion aufgerufen wurde und alles in Ordnung ist"
-               - name: Information werden angezeigt
-                run: bash scripts/01_show_info.sh  
-    
+                  source scripts/common.sh
+                  print_header "Information das funktion aufgerufen wurde und alles in Ordnung ist"
+
+            - name: Information werden angezeigt
+              run: bash scripts/01_show_info.sh
