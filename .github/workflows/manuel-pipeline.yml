@@ -19,6 +19,6 @@ jobs:
               run: chmod +x scripts/*.sh tests/*.sh
 
             - name: Namensbegrüssung findest du hier
-              run: bash scripts/07_manuel_greeting.sh
+              run: bash scripts/07_manual_greeting.sh
               env:
                   STUDENT_NAME: ${{ github.event.inputs.student_name}}
