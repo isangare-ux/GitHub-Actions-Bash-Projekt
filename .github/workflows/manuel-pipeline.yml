@@ -1,0 +1,24 @@
+name: manuelle Pipeline
+
+on:
+    workflow_dispatch:
+        inputs:
+            student_name:
+                description: Welche Name in Bash Skript 07_manuel_greeting.sh eingegeben werden soll
+                required: false
+                default: "Ibrahim"
+jobs:
+    info:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Repository herunterladen
+              uses: actions/checkout@v4
+
+            - name: Skripte ausführbar machen
+              run: chmod +x scripts/*.sh test/*.sh
+
+            - name: Namensbegrüssung findest du hier
+              run: bash scripts/07_manuel_greeting.sh
+              env:
+                  STUDENT_NAME: ${{ github.event.inputs.student_name}}
