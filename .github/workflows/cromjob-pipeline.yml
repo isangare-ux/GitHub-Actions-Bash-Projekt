@@ -21,4 +21,4 @@ jobs:
               run: bash scripts/02_validate_project.sh
 
             - name: Namensbegrüßung findest du hier
-              run: bash scripts/03_analyze_logs
+              run: bash scripts/03_analyze_logs.sh
