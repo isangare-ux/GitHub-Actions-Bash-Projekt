@@ -1,0 +1,22 @@
+name: cromjob-pipeline
+
+on:
+    schedule:
+        - cron: "*/5 * * * *"
+
+jobs:
+    info:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Repository herunterladen
+              uses: actions/checkout@v4
+
+            - name: Skripte ausführbar machen
+              run: chmod +x scripts/*.sh tests/*sh
+
+            - name: Namensbegrüßung findest du hier
+              run: bash scripts/02_validate_project.sh
+
+            - name: Namensbegrüßung findest du hier
+              run: bash scripts/03_analyze_logs
